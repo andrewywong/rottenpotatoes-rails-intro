@@ -12,6 +12,11 @@ class MoviesController < ApplicationController
 
   def index
     @movies = Movie.all
+    @highlight = nil
+    if (params.key?(:t))
+      @movies = Movie.order(params[:t])
+      @highlight = params[:t]
+    end
   end
 
   def new
