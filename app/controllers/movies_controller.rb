@@ -33,7 +33,7 @@ class MoviesController < ApplicationController
     # end
     
     # @movies = Movie.with_ratings(@rating_filters.keys)
-
+    
     # @highlight = nil
     # if (params.key?(:t))
     #   # new sorting settings
@@ -56,6 +56,10 @@ class MoviesController < ApplicationController
     #     flash.keep
     #     # remember filtering and sorting settings
     #     redirect_to movies_path(:ratings => session[:ratings], :t => session[:t])
+    #   elsif (session.key?(:ratings))
+    #     redirect_to movies_path(:ratings => session[:ratings], :t => nil)
+    #   elsif (session.key?(:t))
+    #     redirect_to movies_path(:ratings => nil, :t => session[:t])
     #   end
     # elsif(!params.key?(:ratings))
     #   if (session.key?(:ratings))
@@ -86,7 +90,7 @@ class MoviesController < ApplicationController
     end
     
     @movies = Movie.with_ratings(@rating_filters.keys)
-
+    
     @highlight = nil
     if (params.key?(:t))
       # new sorting settings
@@ -101,6 +105,10 @@ class MoviesController < ApplicationController
         flash.keep
         # remember filtering and sorting settings
         redirect_to movies_path(:ratings => session[:ratings], :t => session[:t])
+      elsif (session.key?(:ratings))
+        redirect_to movies_path(:ratings => session[:ratings], :t => nil)
+      elsif (session.key?(:t))
+        redirect_to movies_path(:ratings => nil, :t => session[:t])
       end
     elsif(!params.key?(:ratings))
       if (session.key?(:ratings))
